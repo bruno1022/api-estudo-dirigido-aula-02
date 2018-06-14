@@ -1,4 +1,4 @@
-package hello;
+package entity;
 
 public class Livro {
 	
