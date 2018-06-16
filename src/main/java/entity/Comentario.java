@@ -4,8 +4,14 @@ public class Comentario {
 	
 	private Long id;
 	private String isbn;
-	private String comentario;
+	private String texto;
 	
+	public String getTexto() {
+		return texto;
+	}
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -18,11 +24,6 @@ public class Comentario {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public String getComentario() {
-		return comentario;
-	}
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
+	
 
 }
