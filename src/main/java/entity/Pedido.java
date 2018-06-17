@@ -3,16 +3,15 @@ package entity;
 public class Pedido {
 	
 	private long id;
-	private String data;
-	private Livro[] livros;
+	private String dataPrevisaoEntrega;	
 	private String status;
+	private CarrinhoCompras carrinhoCompras;	
 	
-	
-	public String getStatus() {
-		return status;
+	public CarrinhoCompras getCarrinhoCompras() {
+		return carrinhoCompras;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setCarrinhoCompras(CarrinhoCompras carrinhoCompras) {
+		this.carrinhoCompras = carrinhoCompras;
 	}
 	public long getId() {
 		return id;
@@ -20,17 +19,17 @@ public class Pedido {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getData() {
-		return data;
+	public String getDataPrevisaoEntrega() {
+		return dataPrevisaoEntrega;
 	}
-	public void setData(String data) {
-		this.data = data;
+	public void setDataPrevisaoEntrega(String dataPrevisaoEntrega) {
+		this.dataPrevisaoEntrega = dataPrevisaoEntrega;
 	}
-	public Livro[] getLivros() {
-		return livros;
+	public String getStatus() {
+		return status;
 	}
-	public void setLivros(Livro[] livros) {
-		this.livros = livros;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

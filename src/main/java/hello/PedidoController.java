@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import entity.CarrinhoCompras;
 import entity.Livro;
 import entity.Pedido;
 
@@ -16,49 +17,47 @@ public class PedidoController {
 	
 	/**
      * 4. Realizar pedidos
-     * @param isbn
-     * @param data
-     * @param pedido
+     * @param idCarrinhoCompras    
      * @return
      */
     
-    @PostMapping("/v1/pedido")    
-    public ResponseEntity<?> inserirPedido(@PathVariable(value="isbn") String isbn, @PathVariable(value="data") String data, @RequestBody Pedido pedido) {
-    	
-    	pedido = new Pedido();
-    	
-    	Livro[] livro = new Livro[2];
-    	livro[0] = new Livro(1L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
-    	livro[1] = new Livro(2L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
-    	livro[1] = null;
-    	
-    	pedido.setLivros(livro);
-    	pedido.setData("11/06/2018");
-    	pedido.setStatus("Nota Fiscal Emitida");
+    @PostMapping("/v1/pedido/carrinhoCompras")    
+    public ResponseEntity<Pedido> inserirPedido(@RequestBody CarrinhoCompras carrinhoCompras) {
+    	    	
+    	Pedido pedido = new Pedido();
+    	pedido.setCarrinhoCompras(carrinhoCompras);
+    	pedido.setStatus("Aguardando Pagamento!");
+    	pedido.setDataPrevisaoEntrega("14/06/2018");
     	
     	return ResponseEntity.status(HttpStatus.CREATED).build();    	
     }
     
     /**
-     * 5. Acompanhamento o status das entregas realizadas.
+     * 5. Acompanhamento do status dos pedidos.
      * @param id
      * @param pedido
      * @return
      */
-    @RequestMapping("/v1/pedidoStatus/{id}")    
-    public ResponseEntity<Pedido> buscarPedido(@PathVariable(value="id") String id, @RequestBody Pedido pedido) {
+    @RequestMapping("/v1/pedido/{id}")    
+    public ResponseEntity<Pedido> buscarPedido(@PathVariable(value="id") Long id) {
     	
-    	pedido = new Pedido();
+    	Pedido pedido = new Pedido();
+    	pedido.setId(id); 
+    	pedido.setDataPrevisaoEntrega("14/06/2016");
+    	pedido.setStatus("Aguardando Pagamento!");
+    	
+    	CarrinhoCompras carrinhoCompras = new CarrinhoCompras();
+    	carrinhoCompras.setId(1);
+    	carrinhoCompras.setValor(199.9);
     	
     	Livro[] livro = new Livro[2];
     	livro[0] = new Livro(1L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
-    	livro[1] = new Livro(2L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
-    	livro[1] = null;
+    	livro[1] = new Livro(2L,"Javascript e Jquery. Desenvolvimento de Interfaces Web Interativas","Jon Duckett","8576089459");
     	
-    	pedido.setId(1L);
-    	pedido.setLivros(livro);
-    	pedido.setData("14/06/2018");
-    	pedido.setStatus("Entregue");    	
+    	
+    	carrinhoCompras.setLivros(livro);
+    	
+    	pedido.setCarrinhoCompras(carrinhoCompras);
     	
     	return ResponseEntity.status(HttpStatus.OK).body(pedido);    	
     }

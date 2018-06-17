@@ -3,15 +3,14 @@ package entity;
 public class CarrinhoCompras {
 
 	private long id;	
-	private Livro[] livros;
-	private String isbn;
+	private double valor;	
+	private Livro[] livros;		
 	
-	
-	public String getIsbn() {
-		return isbn;
+	public double getValor() {
+		return valor;
 	}
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 	public Livro[] getLivros() {
 		return livros;

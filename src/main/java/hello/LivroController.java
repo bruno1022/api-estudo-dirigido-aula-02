@@ -38,9 +38,16 @@ public class LivroController {
 	 * @return
 	 */
     @RequestMapping("/v1/livro/{isbn}/{autor}")    
-    public Livro livro(@PathVariable(value="isbn") String isbn, 
+    public ResponseEntity<Livro> livro(@PathVariable(value="isbn") String isbn, 
     		@PathVariable(value="autor") String autor) {
-        return new Livro(1L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
+    	
+    	if(isbn.equals("8576081733")) {
+    		
+    		Livro livro = new Livro(1L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
+    		return ResponseEntity.status(HttpStatus.OK).body(livro);    		
+    	} else {
+    		return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); 
+    	}        
     }    
     
     /**
@@ -54,7 +61,8 @@ public class LivroController {
     @RequestMapping("/v1/livro")    
     public ResponseEntity<?> cadastraLivro(@RequestBody Livro livro) {
     	
-    	livro = new Livro(1L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
+    	//livro = new Livro(1L,"Use A Cabeça! Java","Kathy Sierra","8576081733");
+    	livro = new Livro(1L,livro.getTitulo(),livro.getAutor(),livro.getIsbn());
     	return ResponseEntity.status(HttpStatus.CREATED).build();    	
     }
 
