@@ -1,4 +1,4 @@
-# API Livraria - Estudo Dirigido Aula 02
+# API Livraria
 
 API para a gestão de uma livraria virtual.
 
